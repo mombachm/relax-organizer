@@ -1,0 +1,16 @@
+{
+  "name": "mylog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc --watch",
+    "testa": "echo bosta"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "2.9.2",
+    "@types/node": "8.5.5"
+  }
+}
