@@ -21,7 +21,7 @@ var CommandIntepreter = /** @class */ (function () {
             case "td":
                 return Command_1.CommandType.ToDo;
                 break;
-            case "ht":
+            case "h":
                 return Command_1.CommandType.History;
                 break;
             default:

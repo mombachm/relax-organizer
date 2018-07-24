@@ -25,7 +25,7 @@ export default class CommandIntepreter {
       case "td":
         return CommandType.ToDo;
         break;
-      case "ht":
+      case "h":
         return CommandType.History;
         break;
       default:
