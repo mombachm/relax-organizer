@@ -20,13 +20,10 @@ var CommandIntepreter = /** @class */ (function () {
         switch (command) {
             case "td":
                 return Command_1.CommandType.ToDo;
-                break;
             case "h":
                 return Command_1.CommandType.History;
-                break;
             default:
                 throw new ErrorMessage_1.default(MessageConstants_1.default.InvalidCommand);
-                break;
         }
     };
     CommandIntepreter.prototype.hasNoArguments = function (processArguments) {

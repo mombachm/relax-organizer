@@ -24,13 +24,10 @@ export default class CommandIntepreter {
     switch(command) {
       case "td":
         return CommandType.ToDo;
-        break;
       case "h":
         return CommandType.History;
-        break;
       default:
         throw new ErrorMessage(ErrorMessageText.InvalidCommand);
-        break;
     }
   }
 
