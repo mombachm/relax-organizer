@@ -1,5 +1,5 @@
 import CommandIntepreter from "./interpreter/CommandInterpreter";
-import { CommandType } from "./command/Command";
+import { CommandType, Command } from "./command/Command";
 import { CommandBuilder } from "./command/CommandBuilder";
 
 export default class AppFacade {
@@ -7,7 +7,6 @@ export default class AppFacade {
 
   constructor() {
     this.commandInterpreter = CommandIntepreter.getInstance();
-    
   }
   
   public executeCommand(processArguments: string[]) {
@@ -15,6 +14,9 @@ export default class AppFacade {
     const commandBuilder = new CommandBuilder();
     commandBuilder.setCommandType(commandType);
     commandBuilder.setArguments(processArguments);
-    commandBuilder.buildCommand();
+    const command: Command | null = commandBuilder.buildCommand();
+    if (command) {
+      command.execute();
+    }
   }
 }

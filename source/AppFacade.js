@@ -11,7 +11,10 @@ var AppFacade = /** @class */ (function () {
         var commandBuilder = new CommandBuilder_1.CommandBuilder();
         commandBuilder.setCommandType(commandType);
         commandBuilder.setArguments(processArguments);
-        commandBuilder.buildCommand();
+        var command = commandBuilder.buildCommand();
+        if (command) {
+            command.execute();
+        }
     };
     return AppFacade;
 }());
