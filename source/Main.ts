@@ -1,6 +1,4 @@
-import Constants from "./utils/Constants";
 import AppFacade from "./AppFacade";
-
 class Main {
   private arguments: string[]
   private appFacade: AppFacade;
