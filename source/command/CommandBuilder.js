@@ -11,7 +11,7 @@ var CommandBuilder = /** @class */ (function () {
     };
     CommandBuilder.prototype.setArguments = function (commandArguments) {
         this.commandArguments = commandArguments;
-        this.commandArguments.splice(0, 1);
+        this.commandArguments.shift();
     };
     CommandBuilder.prototype.buildCommand = function () {
         switch (this.commandType) {

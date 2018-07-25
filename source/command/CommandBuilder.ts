@@ -16,7 +16,7 @@ export class CommandBuilder {
 
   public setArguments(commandArguments: string[]) {
     this.commandArguments = commandArguments;
-    this.commandArguments.splice(0, 1);
+    this.commandArguments.shift();
   }
 
   public buildCommand(): Command | null {
