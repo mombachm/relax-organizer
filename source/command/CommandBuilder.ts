@@ -1,8 +1,10 @@
-import { CommandType } from "./Command";
+import { CommandType, Command } from "./Command";
+import { TodoCommand } from "./TodoCommand";
+import { HistoryCommand } from "./HistoryCommand";
 
 export class CommandBuilder {
   private commandType: CommandType;
-  private commandArguments: string [];
+  private commandArguments: string[];
 
   constructor() {
 
@@ -17,7 +19,14 @@ export class CommandBuilder {
     this.commandArguments.splice(0, 1);
   }
 
-  public buildCommand() {
-    console.log(this.commandArguments);
+  public buildCommand(): Command | null {
+    switch(this.commandType) {
+      case CommandType.ToDo:
+        return new TodoCommand(this.commandArguments);
+      case CommandType.History:
+        return new HistoryCommand(this.commandArguments);
+      default:
+        return null;
+    }
   }
 }
