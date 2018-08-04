@@ -14,7 +14,7 @@ var LogItem_1 = require("../LogItem");
 var TaskItem = /** @class */ (function (_super) {
     __extends(TaskItem, _super);
     function TaskItem() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        return _super.call(this) || this;
     }
     return TaskItem;
 }(LogItem_1.LogItem));

@@ -1,4 +1,5 @@
 import AppFacade from "./AppFacade";
+import { JSONFileIOStream } from "./io/JSONFileIOStream";
 class Main {
   private arguments: string[]
   private appFacade: AppFacade;
@@ -6,8 +7,13 @@ class Main {
   constructor() {
     this.initArguments();
     this.appFacade = new AppFacade();
+
+
     try {
       this.appFacade.executeCommand(this.arguments);
+
+      const streamIO = new JSONFileIOStream();
+      console.log(streamIO.readJSON());
     } catch(message) {
       console.log(message.getText());
     }

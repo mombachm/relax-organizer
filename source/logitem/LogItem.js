@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var LogItem = /** @class */ (function () {
     function LogItem() {
+        this.creationDate = new Date();
+        console.log(this.creationDate);
     }
     LogItem.prototype.getId = function () {
         return this.id;

@@ -18,7 +18,7 @@ export default class CommandIntepreter {
 
   public getCommandType(processArguments: string[]): CommandType {
     if (this.hasNoArguments(processArguments)) {
-      throw new ErrorMessage(ErrorMessageText.InvalidCommand);
+      throw new ErrorMessage(ErrorMessageText.Interpreter.InvalidCommand);
     }
     const command = processArguments[0];
     switch(command) {
@@ -27,7 +27,7 @@ export default class CommandIntepreter {
       case "h":
         return CommandType.History;
       default:
-        throw new ErrorMessage(ErrorMessageText.InvalidCommand);
+        throw new ErrorMessage(ErrorMessageText.Interpreter.InvalidCommand);
     }
   }
 

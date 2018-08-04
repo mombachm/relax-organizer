@@ -14,7 +14,7 @@ var CommandIntepreter = /** @class */ (function () {
     };
     CommandIntepreter.prototype.getCommandType = function (processArguments) {
         if (this.hasNoArguments(processArguments)) {
-            throw new ErrorMessage_1.default(MessageConstants_1.default.InvalidCommand);
+            throw new ErrorMessage_1.default(MessageConstants_1.default.Interpreter.InvalidCommand);
         }
         var command = processArguments[0];
         switch (command) {
@@ -23,7 +23,7 @@ var CommandIntepreter = /** @class */ (function () {
             case "h":
                 return Command_1.CommandType.History;
             default:
-                throw new ErrorMessage_1.default(MessageConstants_1.default.InvalidCommand);
+                throw new ErrorMessage_1.default(MessageConstants_1.default.Interpreter.InvalidCommand);
         }
     };
     CommandIntepreter.prototype.hasNoArguments = function (processArguments) {

@@ -1,4 +1,6 @@
 const Constants = {
-  Test: "test"
+  Data: {
+    Path: "./data"
+  }
 };
 export default Constants;
