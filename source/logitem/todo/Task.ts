@@ -1,6 +1,6 @@
 import { LogItem } from "../LogItem";
 
-export class TaskItem extends LogItem{
+export class Task extends LogItem{
 
   constructor() {
     super();

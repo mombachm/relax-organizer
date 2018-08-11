@@ -11,12 +11,12 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var LogItem_1 = require("../LogItem");
-var TaskItem = /** @class */ (function (_super) {
-    __extends(TaskItem, _super);
-    function TaskItem() {
+var Task = /** @class */ (function (_super) {
+    __extends(Task, _super);
+    function Task() {
         return _super.call(this) || this;
     }
-    return TaskItem;
+    return Task;
 }(LogItem_1.LogItem));
-exports.TaskItem = TaskItem;
-//# sourceMappingURL=TaskItem.js.map
+exports.Task = Task;
+//# sourceMappingURL=Task.js.map
