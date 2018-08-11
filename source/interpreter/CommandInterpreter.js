@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Command_1 = require("../command/Command");
 var ErrorMessage_1 = require("../utils/messages/ErrorMessage");
 var MessageConstants_1 = require("../utils/messages/MessageConstants");
+var Constants_1 = require("../utils/Constants");
 var CommandIntepreter = /** @class */ (function () {
     function CommandIntepreter() {
     }
@@ -18,9 +19,9 @@ var CommandIntepreter = /** @class */ (function () {
         }
         var command = processArguments[0];
         switch (command) {
-            case "td":
+            case Constants_1.default.Commands.ToDo:
                 return Command_1.CommandType.ToDo;
-            case "h":
+            case Constants_1.default.Commands.History:
                 return Command_1.CommandType.History;
             default:
                 throw new ErrorMessage_1.default(MessageConstants_1.default.Interpreter.InvalidCommand);
