@@ -8,8 +8,8 @@ export abstract class LogItem implements LogItemDef {
   protected creationDate: Date;
 
   constructor() {
+    this.id = new Date().getTime();
     this.creationDate = new Date();
-    console.log(this.creationDate);
   }
 
   public getId(): number {
@@ -17,6 +17,6 @@ export abstract class LogItem implements LogItemDef {
   }
   
   public getCreationDate(): Date {
-    return this.creationDate;
+    return new Date(this.creationDate);
   }
 }

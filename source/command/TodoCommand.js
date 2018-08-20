@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Command_1 = require("./Command");
-var TaskItem_1 = require("../logitem/todo/TaskItem");
+var Task_1 = require("../logitem/todo/Task");
 var TodoCommand = /** @class */ (function (_super) {
     __extends(TodoCommand, _super);
     function TodoCommand(commandArguments) {
@@ -22,7 +22,7 @@ var TodoCommand = /** @class */ (function (_super) {
         if (!this.hasArguments()) {
             return;
         }
-        var task = new TaskItem_1.TaskItem();
+        var task = new Task_1.Task();
         console.log(this.arguments);
     };
     TodoCommand.prototype.hasArguments = function () {

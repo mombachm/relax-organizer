@@ -7,16 +7,19 @@ var JSONFileIOStream = /** @class */ (function () {
     function JSONFileIOStream() {
         this.fs = require('fs');
     }
-    JSONFileIOStream.prototype.getInstance = function () {
+    JSONFileIOStream.getInstance = function () {
         if (this.instance) {
             return this.instance;
         }
         return new JSONFileIOStream();
     };
     JSONFileIOStream.prototype.saveJSON = function (model) {
-        var dir = this.createDirIfNeeded();
+        this.createDirIfNeeded(Constants_1.default.Data.Path);
+        this.createDirIfNeeded(Constants_1.default.Data.Backup.Path);
+        var JSONModel = JSON.stringify(model);
         try {
-            this.fs.writeFileSync(dir + "/data.json", model);
+            this.fs.writeFileSync(Constants_1.default.Data.Path + "/data.json", JSONModel);
+            this.fs.writeFileSync(Constants_1.default.Data.Backup.Path + "/data_" + new Date().toLocaleDateString().replace(/[/]/g, "_") + ".json", JSONModel);
         }
         catch (e) {
             throw new ErrorMessage_1.default(MessageConstants_1.default.IOStream.WriteError);
@@ -31,12 +34,11 @@ var JSONFileIOStream = /** @class */ (function () {
             throw new ErrorMessage_1.default(MessageConstants_1.default.IOStream.ReadError);
         }
     };
-    JSONFileIOStream.prototype.createDirIfNeeded = function () {
+    JSONFileIOStream.prototype.createDirIfNeeded = function (dirPath) {
         var dir = Constants_1.default.Data.Path;
-        if (!this.fs.existsSync(dir)) {
-            this.fs.mkdirSync(dir);
+        if (!this.fs.existsSync(dirPath)) {
+            this.fs.mkdirSync(dirPath);
         }
-        return dir;
     };
     return JSONFileIOStream;
 }());

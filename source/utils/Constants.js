@@ -2,7 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Constants = {
     Data: {
-        Path: "./data"
+        Path: "./data",
+        Backup: {
+            Path: "./data/backup"
+        }
     },
     Commands: {
         History: "h",

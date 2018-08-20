@@ -1,4 +1,5 @@
 import { Task } from "../../logitem/todo/Task";
+import { JSONFileIOStream } from "../JSONFileIOStream";
 
 export interface TaskService {
   listTasks(): Task[];
@@ -6,4 +7,12 @@ export interface TaskService {
   updateTask(event: Task): void;
   deleteTask(id: number): void;
   getTaskById(id: number): void;
+}
+
+export class TaskService implements TaskService {
+  public createTask(task: Task) {
+    
+    const stream = JSONFileIOStream.getInstance();
+    // console.stream.readJSON();
+  }
 }

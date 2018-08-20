@@ -1,6 +1,9 @@
 const Constants = {
   Data: {
-    Path: "./data"
+    Path: "./data",
+    Backup: {
+      Path: "./data/backup"
+    }
   },
   Commands: {
     History: "h",

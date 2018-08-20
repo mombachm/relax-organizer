@@ -1,5 +1,5 @@
 import { AbstractCommand } from "./Command";
-import { TaskItem } from "../logitem/todo/TaskItem";
+import { Task } from "../logitem/todo/Task";
 
 export class TodoCommand extends AbstractCommand {
 
@@ -12,7 +12,7 @@ export class TodoCommand extends AbstractCommand {
     if(!this.hasArguments()) {
       return;
     }
-    const task = new TaskItem();
+    const task = new Task();
     console.log(this.arguments);
   }
 

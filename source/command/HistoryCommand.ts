@@ -8,5 +8,6 @@ export class HistoryCommand extends AbstractCommand {
 
   public execute() {
     console.log("History Command.");
+    
   }
 }
