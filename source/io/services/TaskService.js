@@ -8,7 +8,7 @@ var TaskService = /** @class */ (function () {
     }
     TaskService.prototype.createTask = function (task) {
         if (!task) {
-            throw new ErrorMessage_1.default(MessageConstants_1.default.Task.FailedToCreate);
+            throw new ErrorMessage_1.default(MessageConstants_1.default.Error.Task.FailedToCreate);
         }
         var model = MainDAO_1.MainDAO.getModel();
         model.tasks.push(task);

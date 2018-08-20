@@ -1,6 +1,6 @@
 import { Model } from "./model/Model";
 import { JSONFileIOStream } from "./JSONFileIOStream";
-import ErrorMessageText from "../utils/messages/MessageConstants";
+import Message from "../utils/messages/MessageConstants";
 import ErrorMessage from "../utils/messages/ErrorMessage";
 import { Task } from "../logitem/todo/Task";
 import { Event } from "../logitem/history/Event";
@@ -20,7 +20,7 @@ export class MainDAO {
     const modelJSON = streamIO.readJSON();
     const model = this.populateModel(modelJSON);
     if (!model) {
-      throw new ErrorMessage(ErrorMessageText.Data.NotLoaded);
+      throw new ErrorMessage(Message.Error.Data.NotLoaded);
     }
     return model;
   }
@@ -48,7 +48,7 @@ export class MainDAO {
         model.tasks.push(task);
       });
     } else {
-      throw new ErrorMessage(ErrorMessageText.IOStream.ReadError);
+      throw new ErrorMessage(Message.Error.IOStream.ReadError);
     }
     if(modelJSON.history) {
       const historyObj: any[] = modelJSON.history;
@@ -58,7 +58,7 @@ export class MainDAO {
         model.history.push(event);
       });
     } else {
-      throw new ErrorMessage(ErrorMessageText.IOStream.ReadError);
+      throw new ErrorMessage(Message.Error.IOStream.ReadError);
     }
     return model;
   }

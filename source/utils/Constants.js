@@ -9,7 +9,8 @@ var Constants = {
     },
     Commands: {
         History: "h",
-        ToDo: "td"
+        ToDo: "td",
+        ListTasks: "lt"
     }
 };
 exports.default = Constants;

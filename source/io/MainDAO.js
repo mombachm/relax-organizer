@@ -19,7 +19,7 @@ var MainDAO = /** @class */ (function () {
         var modelJSON = streamIO.readJSON();
         var model = this.populateModel(modelJSON);
         if (!model) {
-            throw new ErrorMessage_1.default(MessageConstants_1.default.Data.NotLoaded);
+            throw new ErrorMessage_1.default(MessageConstants_1.default.Error.Data.NotLoaded);
         }
         return model;
     };
@@ -46,7 +46,7 @@ var MainDAO = /** @class */ (function () {
             });
         }
         else {
-            throw new ErrorMessage_1.default(MessageConstants_1.default.IOStream.ReadError);
+            throw new ErrorMessage_1.default(MessageConstants_1.default.Error.IOStream.ReadError);
         }
         if (modelJSON.history) {
             var historyObj = modelJSON.history;
@@ -57,7 +57,7 @@ var MainDAO = /** @class */ (function () {
             });
         }
         else {
-            throw new ErrorMessage_1.default(MessageConstants_1.default.IOStream.ReadError);
+            throw new ErrorMessage_1.default(MessageConstants_1.default.Error.IOStream.ReadError);
         }
         return model;
     };

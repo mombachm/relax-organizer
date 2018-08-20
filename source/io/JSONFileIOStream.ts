@@ -1,6 +1,6 @@
 import Constants from "../utils/Constants";
 import ErrorMessage from "../utils/messages/ErrorMessage";
-import ErrorMessageText from "../utils/messages/MessageConstants";
+import Message from "../utils/messages/MessageConstants";
 import { Task } from "../logitem/todo/Task";
 
 
@@ -23,7 +23,7 @@ export class JSONFileIOStream {
       this.fs.writeFileSync(Constants.Data.Path + "/data.json", JSONModel);
       this.fs.writeFileSync(Constants.Data.Backup.Path + "/data_" + new Date().toLocaleDateString().replace(/[/]/g,"_") + ".json", JSONModel);
     } catch(e) {
-      throw new ErrorMessage(ErrorMessageText.IOStream.WriteError);
+      throw new ErrorMessage(Message.Error.IOStream.WriteError);
     }
   }
 
@@ -32,7 +32,7 @@ export class JSONFileIOStream {
       const data = this.fs.readFileSync(Constants.Data.Path + "/data.json");
       return JSON.parse(data);
     } catch(e) {
-      throw new ErrorMessage(ErrorMessageText.IOStream.ReadError);
+      throw new ErrorMessage(Message.Error.IOStream.ReadError);
     }
   }
 

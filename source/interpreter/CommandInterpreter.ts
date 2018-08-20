@@ -1,6 +1,6 @@
 import { CommandType } from "../command/Command";
 import ErrorMessage from "../utils/messages/ErrorMessage";
-import ErrorMessageText from "../utils/messages/MessageConstants";
+import Message from "../utils/messages/MessageConstants";
 import Constants from "../utils/Constants";
 
 export default class CommandIntepreter {
@@ -19,7 +19,7 @@ export default class CommandIntepreter {
 
   public getCommandType(processArguments: string[]): CommandType {
     if (this.hasNoArguments(processArguments)) {
-      throw new ErrorMessage(ErrorMessageText.Interpreter.InvalidCommand);
+      throw new ErrorMessage(Message.Error.Interpreter.InvalidCommand);
     }
     const command = processArguments[0];
     switch(command) {
@@ -27,8 +27,10 @@ export default class CommandIntepreter {
         return CommandType.ToDo;
       case Constants.Commands.History:
         return CommandType.History;
+      case Constants.Commands.ListTasks:
+        return CommandType.ListTasks;
       default:
-        throw new ErrorMessage(ErrorMessageText.Interpreter.InvalidCommand);
+        throw new ErrorMessage(Message.Error.Interpreter.InvalidCommand);
     }
   }
 

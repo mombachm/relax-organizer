@@ -4,6 +4,7 @@ var CommandType;
 (function (CommandType) {
     CommandType[CommandType["ToDo"] = 0] = "ToDo";
     CommandType[CommandType["History"] = 1] = "History";
+    CommandType[CommandType["ListTasks"] = 2] = "ListTasks";
 })(CommandType = exports.CommandType || (exports.CommandType = {}));
 var AbstractCommand = /** @class */ (function () {
     function AbstractCommand(commandArguments) {

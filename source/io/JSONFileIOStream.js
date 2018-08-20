@@ -22,7 +22,7 @@ var JSONFileIOStream = /** @class */ (function () {
             this.fs.writeFileSync(Constants_1.default.Data.Backup.Path + "/data_" + new Date().toLocaleDateString().replace(/[/]/g, "_") + ".json", JSONModel);
         }
         catch (e) {
-            throw new ErrorMessage_1.default(MessageConstants_1.default.IOStream.WriteError);
+            throw new ErrorMessage_1.default(MessageConstants_1.default.Error.IOStream.WriteError);
         }
     };
     JSONFileIOStream.prototype.readJSON = function () {
@@ -31,7 +31,7 @@ var JSONFileIOStream = /** @class */ (function () {
             return JSON.parse(data);
         }
         catch (e) {
-            throw new ErrorMessage_1.default(MessageConstants_1.default.IOStream.ReadError);
+            throw new ErrorMessage_1.default(MessageConstants_1.default.Error.IOStream.ReadError);
         }
     };
     JSONFileIOStream.prototype.createDirIfNeeded = function (dirPath) {

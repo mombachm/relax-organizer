@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Command_1 = require("./Command");
 var TodoCommand_1 = require("./TodoCommand");
 var HistoryCommand_1 = require("./HistoryCommand");
+var ListTasksCommand_1 = require("./ListTasksCommand");
 var CommandBuilder = /** @class */ (function () {
     function CommandBuilder() {
     }
@@ -19,6 +20,8 @@ var CommandBuilder = /** @class */ (function () {
                 return new TodoCommand_1.TodoCommand(this.commandArguments);
             case Command_1.CommandType.History:
                 return new HistoryCommand_1.HistoryCommand(this.commandArguments);
+            case Command_1.CommandType.ListTasks:
+                return new ListTasksCommand_1.ListTasksCommand(this.commandArguments);
             default:
                 return null;
         }

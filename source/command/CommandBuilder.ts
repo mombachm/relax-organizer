@@ -1,6 +1,7 @@
 import { CommandType, Command } from "./Command";
 import { TodoCommand } from "./TodoCommand";
 import { HistoryCommand } from "./HistoryCommand";
+import { ListTasksCommand } from "./ListTasksCommand";
 
 export class CommandBuilder {
   private commandType: CommandType;
@@ -25,6 +26,8 @@ export class CommandBuilder {
         return new TodoCommand(this.commandArguments);
       case CommandType.History:
         return new HistoryCommand(this.commandArguments);
+      case CommandType.ListTasks:
+        return new ListTasksCommand(this.commandArguments);
       default:
         return null;
     }

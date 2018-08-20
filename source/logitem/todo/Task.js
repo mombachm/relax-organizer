@@ -15,7 +15,7 @@ var Task = /** @class */ (function (_super) {
     __extends(Task, _super);
     function Task(description) {
         var _this = _super.call(this) || this;
-        _this.description = description;
+        _this.description = description || "";
         return _this;
     }
     Task.prototype.setDescription = function (description) {
@@ -23,6 +23,14 @@ var Task = /** @class */ (function (_super) {
     };
     Task.prototype.getDescription = function () {
         return this.description;
+    };
+    Task.prototype.toString = function () {
+        return this.formatTaskInfo();
+    };
+    Task.prototype.formatTaskInfo = function () {
+        var description = this.getDescription();
+        var taskInfo = description;
+        return taskInfo;
     };
     return Task;
 }(LogItem_1.LogItem));
