@@ -10,6 +10,9 @@ var ErrorMessageText = {
     },
     Data: {
         NotLoaded: "Data not loaded."
+    },
+    Task: {
+        FailedToCreate: "Failed to create task."
     }
 };
 exports.default = ErrorMessageText;
