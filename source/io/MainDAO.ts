@@ -8,14 +8,14 @@ import { Event } from "../logitem/history/Event";
 export class MainDAO {
   private static model: Model | null;
 
-  public static getModel(): Model | null {
+  public static getModel(): Model {
     if(!this.model) {
       this.model = this.loadModel();
     }
     return this.model;
   }
 
-  private static loadModel(): Model | null {
+  private static loadModel(): Model {
     const streamIO = JSONFileIOStream.getInstance();
     const modelJSON = streamIO.readJSON();
     const model = this.populateModel(modelJSON);
