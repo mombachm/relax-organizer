@@ -14,6 +14,10 @@ var TaskService = /** @class */ (function () {
         model.tasks.push(task);
         MainDAO_1.MainDAO.saveModel(model);
     };
+    TaskService.prototype.listTasks = function () {
+        var model = MainDAO_1.MainDAO.getModel();
+        return model.tasks;
+    };
     return TaskService;
 }());
 exports.TaskService = TaskService;

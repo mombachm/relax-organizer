@@ -22,4 +22,9 @@ export class TaskService implements TaskService {
     model.tasks.push(task);
     MainDAO.saveModel(model);
   }
+
+  public listTasks(): Task[] {
+    const model = MainDAO.getModel();
+    return model.tasks;
+  }
 }
