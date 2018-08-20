@@ -18,6 +18,9 @@ var MainDAO = /** @class */ (function () {
         var streamIO = JSONFileIOStream_1.JSONFileIOStream.getInstance();
         var modelJSON = streamIO.readJSON();
         var model = this.populateModel(modelJSON);
+        if (!model) {
+            throw new ErrorMessage_1.default(MessageConstants_1.default.Data.NotLoaded);
+        }
         return model;
     };
     MainDAO.saveModel = function (model) {

@@ -19,6 +19,9 @@ export class MainDAO {
     const streamIO = JSONFileIOStream.getInstance();
     const modelJSON = streamIO.readJSON();
     const model = this.populateModel(modelJSON);
+    if (!model) {
+      throw new ErrorMessage(ErrorMessageText.Data.NotLoaded);
+    }
     return model;
   }
   
