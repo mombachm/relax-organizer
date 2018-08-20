@@ -11,4 +11,8 @@ export class Task extends LogItem{
   public setDescription(description: string): void {
     this.description = description;
   }
+
+  public getDescription(): string | undefined {
+    return this.description;
+  }
 }

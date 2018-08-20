@@ -21,6 +21,9 @@ var Task = /** @class */ (function (_super) {
     Task.prototype.setDescription = function (description) {
         this.description = description;
     };
+    Task.prototype.getDescription = function () {
+        return this.description;
+    };
     return Task;
 }(LogItem_1.LogItem));
 exports.Task = Task;
