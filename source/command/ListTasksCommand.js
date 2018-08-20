@@ -14,6 +14,7 @@ var Command_1 = require("./Command");
 var TaskService_1 = require("../io/services/TaskService");
 var InfoMessage_1 = require("../utils/messages/InfoMessage");
 var MessageConstants_1 = require("../utils/messages/MessageConstants");
+var Message_1 = require("../utils/messages/Message");
 var ListTasksCommand = /** @class */ (function (_super) {
     __extends(ListTasksCommand, _super);
     function ListTasksCommand(commandArguments) {
@@ -36,6 +37,7 @@ var ListTasksCommand = /** @class */ (function (_super) {
     };
     ListTasksCommand.prototype.listTasksByDate = function (tasks) {
         var date;
+        console.log(Message_1.MessageColor.FgBlue + "\n\n\n");
         tasks.forEach(function (task) {
             if (date && task.getCreationDate().toDateString() !== date.toDateString()) {
                 date = task.getCreationDate();
@@ -45,8 +47,10 @@ var ListTasksCommand = /** @class */ (function (_super) {
                 date = task.getCreationDate();
                 console.log(task.getCreationDate().toLocaleDateString());
             }
-            console.log(task.toString());
+            console.log(Message_1.MessageColor.FgBlack + "------- " + task.getId().toString() + " -------" + Message_1.MessageColor.Reset);
+            console.log(Message_1.MessageColor.FgCyan + task.toString() + Message_1.MessageColor.Reset);
         });
+        console.log(Message_1.MessageColor.FgBlue + "\n\n\n");
     };
     return ListTasksCommand;
 }(Command_1.AbstractCommand));
