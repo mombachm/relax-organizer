@@ -13,9 +13,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var LogItem_1 = require("../LogItem");
 var Task = /** @class */ (function (_super) {
     __extends(Task, _super);
-    function Task() {
-        return _super.call(this) || this;
+    function Task(description) {
+        var _this = _super.call(this) || this;
+        _this.description = description;
+        return _this;
     }
+    Task.prototype.setDescription = function (description) {
+        this.description = description;
+    };
     return Task;
 }(LogItem_1.LogItem));
 exports.Task = Task;
