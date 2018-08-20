@@ -1,5 +1,8 @@
 import { Task } from "../../logitem/todo/Task";
 import { JSONFileIOStream } from "../JSONFileIOStream";
+import { MainDAO } from "../MainDAO";
+import ErrorMessage from "../../utils/messages/ErrorMessage";
+import ErrorMessageText from "../../utils/messages/MessageConstants";
 
 export interface TaskService {
   listTasks(): Task[];
@@ -10,9 +13,13 @@ export interface TaskService {
 }
 
 export class TaskService implements TaskService {
+
   public createTask(task: Task) {
-    
-    const stream = JSONFileIOStream.getInstance();
-    // console.stream.readJSON();
+    if(!task) {
+      throw new ErrorMessage(ErrorMessageText.Task.FailedToCreate);
+    }
+    const model = MainDAO.getModel();
+    model.tasks.push(task);
+    MainDAO.saveModel(model);
   }
 }
