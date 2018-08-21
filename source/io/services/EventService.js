@@ -23,7 +23,14 @@ var EventService = /** @class */ (function () {
         var targetEvent = events.find(function (event) { return event.getId() === id; });
         return targetEvent;
     };
-    EventService.prototype.updateEvent = function (event) {
+    EventService.prototype.updateEvent = function (id, event) {
+        var targetEvent = this.getEventById(id);
+        if (targetEvent) {
+            Object.assign(targetEvent, event);
+            targetEvent.setId(id);
+        }
+        var model = MainDAO_1.MainDAO.getModel();
+        MainDAO_1.MainDAO.saveModel(model);
     };
     return EventService;
 }());

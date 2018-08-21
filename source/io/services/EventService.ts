@@ -6,7 +6,7 @@ import { Event } from "../../logitem/history/Event";
 export interface EventService {
   listEvents(): Event[];
   createEvent(event: Event): void;
-  updateEvent(event: Event): void;
+  updateEvent(id: number, event: Event): void;
   deleteEvent(id: number): void;
   getEventById(id: number): void;
 }
@@ -33,8 +33,14 @@ export class EventService implements EventService {
     return targetEvent;
   }
 
-  public updateEvent(event: Event): void {
-
+  public updateEvent(id: number, event: Event) {
+    const targetEvent = this.getEventById(id);
+    if (targetEvent) {
+      Object.assign(targetEvent, event);
+      targetEvent.setId(id);
+    }
+    const model = MainDAO.getModel();
+    MainDAO.saveModel(model);
   }
 
 }
