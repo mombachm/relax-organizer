@@ -5,6 +5,9 @@ var LogItem = /** @class */ (function () {
         this.id = new Date().getTime();
         this.creationDate = new Date();
     }
+    LogItem.prototype.setId = function (id) {
+        this.id = id;
+    };
     LogItem.prototype.getId = function () {
         return this.id;
     };

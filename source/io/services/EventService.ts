@@ -33,4 +33,8 @@ export class EventService implements EventService {
     return targetEvent;
   }
 
+  public updateEvent(event: Event): void {
+
+  }
+
 }

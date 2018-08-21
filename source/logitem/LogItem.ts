@@ -12,6 +12,10 @@ export abstract class LogItem implements LogItemDef {
     this.creationDate = new Date();
   }
 
+  public setId(id: number) {
+    this.id = id;
+  }
+  
   public getId(): number {
     return this.id;
   }

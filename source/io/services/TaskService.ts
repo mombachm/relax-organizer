@@ -34,4 +34,14 @@ export class TaskService implements TaskService {
     return targetTask;
   }
 
+  public updateTask(id: number, task: Task) {
+    const targetTask = this.getTaskById(id);
+    if (targetTask) {
+      Object.assign(targetTask, task);
+      targetTask.setId(id);
+    }
+    const model = MainDAO.getModel();
+    MainDAO.saveModel(model);
+  }
+
 }

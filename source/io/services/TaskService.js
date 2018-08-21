@@ -23,6 +23,15 @@ var TaskService = /** @class */ (function () {
         var targetTask = tasks.find(function (task) { return task.getId() === id; });
         return targetTask;
     };
+    TaskService.prototype.updateTask = function (id, task) {
+        var targetTask = this.getTaskById(id);
+        if (targetTask) {
+            Object.assign(targetTask, task);
+            targetTask.setId(id);
+        }
+        var model = MainDAO_1.MainDAO.getModel();
+        MainDAO_1.MainDAO.saveModel(model);
+    };
     return TaskService;
 }());
 exports.TaskService = TaskService;
