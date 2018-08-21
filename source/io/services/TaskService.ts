@@ -7,9 +7,9 @@ import Message from "../../utils/messages/MessageConstants";
 export interface TaskService {
   listTasks(): Task[];
   createTask(task: Task): void;
-  updateTask(event: Task): void;
+  updateTask(id: number, task: Task): void;
   deleteTask(id: number): void;
-  getTaskById(id: number): void;
+  getTaskById(id: number): Task | undefined;
 }
 
 export class TaskService implements TaskService {
@@ -27,4 +27,11 @@ export class TaskService implements TaskService {
     const model = MainDAO.getModel();
     return model.tasks;
   }
+
+  public getTaskById(id: number): Task | undefined {
+    const tasks = this.listTasks();
+    const targetTask = tasks.find((task) => task.getId() === id);
+    return targetTask;
+  }
+
 }

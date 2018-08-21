@@ -18,6 +18,11 @@ var TaskService = /** @class */ (function () {
         var model = MainDAO_1.MainDAO.getModel();
         return model.tasks;
     };
+    TaskService.prototype.getTaskById = function (id) {
+        var tasks = this.listTasks();
+        var targetTask = tasks.find(function (task) { return task.getId() === id; });
+        return targetTask;
+    };
     return TaskService;
 }());
 exports.TaskService = TaskService;
