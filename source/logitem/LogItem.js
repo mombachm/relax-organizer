@@ -4,6 +4,7 @@ var LogItem = /** @class */ (function () {
     function LogItem() {
         this.id = new Date().getTime();
         this.creationDate = new Date();
+        this.deleted = false;
     }
     LogItem.prototype.setId = function (id) {
         this.id = id;
@@ -13,6 +14,12 @@ var LogItem = /** @class */ (function () {
     };
     LogItem.prototype.getCreationDate = function () {
         return new Date(this.creationDate);
+    };
+    LogItem.prototype.setDeleted = function (deleted) {
+        this.deleted = deleted;
+    };
+    LogItem.prototype.getDeleted = function () {
+        return this.deleted;
     };
     return LogItem;
 }());

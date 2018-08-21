@@ -6,10 +6,12 @@ export interface LogItemDef {
 export abstract class LogItem implements LogItemDef {
   protected id: number;
   protected creationDate: Date;
+  protected deleted: boolean;
 
   constructor() {
     this.id = new Date().getTime();
     this.creationDate = new Date();
+    this.deleted = false;
   }
 
   public setId(id: number) {
@@ -22,5 +24,13 @@ export abstract class LogItem implements LogItemDef {
   
   public getCreationDate(): Date {
     return new Date(this.creationDate);
+  }
+
+  public setDeleted(deleted: boolean) {
+    this.deleted = deleted;
+  }
+
+  public getDeleted(): boolean {
+    return this.deleted;
   }
 }
