@@ -13,9 +13,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var LogItem_1 = require("../LogItem");
 var Event = /** @class */ (function (_super) {
     __extends(Event, _super);
-    function Event() {
-        return _super.call(this) || this;
+    function Event(description) {
+        var _this = _super.call(this) || this;
+        _this.description = description || "";
+        return _this;
     }
+    Event.prototype.setDescription = function (description) {
+        this.description = description;
+    };
+    Event.prototype.getDescription = function () {
+        return this.description;
+    };
+    Event.prototype.toString = function () {
+        return this.formatEventInfo();
+    };
+    Event.prototype.formatEventInfo = function () {
+        var description = this.getDescription();
+        var eventInfo = description;
+        return eventInfo;
+    };
     return Event;
 }(LogItem_1.LogItem));
 exports.Event = Event;

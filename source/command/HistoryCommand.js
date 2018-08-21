@@ -11,13 +11,38 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Command_1 = require("./Command");
+var EventService_1 = require("../io/services/EventService");
+var Event_1 = require("../logitem/history/Event");
 var HistoryCommand = /** @class */ (function (_super) {
     __extends(HistoryCommand, _super);
     function HistoryCommand(commandArguments) {
-        return _super.call(this, commandArguments) || this;
+        var _this = _super.call(this, commandArguments) || this;
+        _this.eventService = new EventService_1.EventService();
+        return _this;
     }
     HistoryCommand.prototype.execute = function () {
-        console.log("History Command.");
+        if (!this.hasArguments()) {
+            return;
+        }
+        var events = this.createEventsForArguments();
+        this.saveEvents(events);
+    };
+    HistoryCommand.prototype.hasArguments = function () {
+        return Boolean(this.arguments.length);
+    };
+    HistoryCommand.prototype.createEventsForArguments = function () {
+        var events = [];
+        this.arguments.forEach(function (eventDescription) {
+            var event = new Event_1.Event(eventDescription);
+            events.push(event);
+        });
+        return events;
+    };
+    HistoryCommand.prototype.saveEvents = function (events) {
+        var _this = this;
+        events.forEach(function (event) {
+            _this.eventService.createEvent(event);
+        });
     };
     return HistoryCommand;
 }(Command_1.AbstractCommand));
