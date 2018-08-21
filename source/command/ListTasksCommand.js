@@ -37,18 +37,18 @@ var ListTasksCommand = /** @class */ (function (_super) {
     };
     ListTasksCommand.prototype.listTasksByDate = function (tasks) {
         var date;
-        console.log(Message_1.MessageColor.FgBlue + "\n\n\n");
+        console.log("\n\n\n");
         tasks.forEach(function (task) {
             if (date && task.getCreationDate().toDateString() !== date.toDateString()) {
                 date = task.getCreationDate();
-                console.log(task.getCreationDate().toLocaleDateString());
+                console.log("\n" + Message_1.MessageColor.FgGray + task.getCreationDate().toDateString());
             }
             else if (!date) {
                 date = task.getCreationDate();
-                console.log(task.getCreationDate().toLocaleDateString());
+                console.log("\n" + Message_1.MessageColor.FgGray + task.getCreationDate().toDateString());
             }
-            console.log(Message_1.MessageColor.FgBlack + "------- " + task.getId().toString() + " -------" + Message_1.MessageColor.Reset);
-            console.log(Message_1.MessageColor.FgCyan + task.toString() + Message_1.MessageColor.Reset);
+            console.log(Message_1.MessageColor.FgGray + "------- Task: " + task.getId().toString() + " -------" + Message_1.MessageColor.Reset);
+            console.log(Message_1.MessageColor.FgCyan + "  " + task.toString() + Message_1.MessageColor.Reset);
         });
         console.log(Message_1.MessageColor.FgBlue + "\n\n\n");
     };

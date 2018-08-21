@@ -35,6 +35,7 @@ var MessageColor;
     MessageColor["FgMagenta"] = "\u001B[35m";
     MessageColor["FgCyan"] = "\u001B[36m";
     MessageColor["FgWhite"] = "\u001B[37m";
+    MessageColor["FgGray"] = "\u001B[90m";
     MessageColor["BgBlack"] = "\u001B[40m";
     MessageColor["BgRed"] = "\u001B[41m";
     MessageColor["BgGreen"] = "\u001B[42m";
