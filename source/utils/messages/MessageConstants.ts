@@ -13,6 +13,9 @@ const Message = {
     },
     Task: {
       FailedToCreate: "Failed to create task."
+    },
+    Event: {
+      FailedToCreate: "Failed to create event."
     }
   },
   Info: {
