@@ -29,6 +29,8 @@ export default class CommandIntepreter {
         return CommandType.History;
       case Constants.Commands.ListTasks:
         return CommandType.ListTasks;
+      case Constants.Commands.ListHistory:
+        return CommandType.ListHistory;
       default:
         throw new ErrorMessage(Message.Error.Interpreter.InvalidCommand);
     }

@@ -8,7 +8,8 @@ const Constants = {
   Commands: {
     History: "h",
     ToDo: "td",
-    ListTasks: "lt"
+    ListTasks: "lt",
+    ListHistory: "lh"
   }
 };
 export default Constants;

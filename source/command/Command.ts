@@ -6,7 +6,8 @@ export interface Command {
 export enum CommandType {
   ToDo,
   History,
-  ListTasks
+  ListTasks,
+  ListHistory
 }
 
 export abstract class AbstractCommand implements Command {

@@ -25,6 +25,8 @@ var CommandIntepreter = /** @class */ (function () {
                 return Command_1.CommandType.History;
             case Constants_1.default.Commands.ListTasks:
                 return Command_1.CommandType.ListTasks;
+            case Constants_1.default.Commands.ListHistory:
+                return Command_1.CommandType.ListHistory;
             default:
                 throw new ErrorMessage_1.default(MessageConstants_1.default.Error.Interpreter.InvalidCommand);
         }

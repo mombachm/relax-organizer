@@ -23,7 +23,7 @@ const Message = {
       NoTasks: "There are no tasks to list."
     },
     ListHistoryCommand: {
-      NoTasks: "There are no tasks to list."
+      NoEvents: "There are no events to list."
     }
   }
 };
