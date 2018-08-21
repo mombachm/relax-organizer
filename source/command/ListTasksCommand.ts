@@ -18,7 +18,7 @@ export class ListTasksCommand extends AbstractCommand {
     if(tasks.length) {
       this.listTasksByDate(tasks);
     } else {
-      throw new InfoMessage(Message.Info.TaskListCommand.NoTasks);
+      throw new InfoMessage(Message.Info.ListTaskCommand.NoTasks);
     }
   }
 

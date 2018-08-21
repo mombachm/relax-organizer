@@ -28,7 +28,7 @@ var ListTasksCommand = /** @class */ (function (_super) {
             this.listTasksByDate(tasks);
         }
         else {
-            throw new InfoMessage_1.default(MessageConstants_1.default.Info.TaskListCommand.NoTasks);
+            throw new InfoMessage_1.default(MessageConstants_1.default.Info.ListTaskCommand.NoTasks);
         }
     };
     ListTasksCommand.prototype.loadTasks = function () {

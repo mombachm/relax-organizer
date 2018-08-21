@@ -20,7 +20,10 @@ var Message = {
         }
     },
     Info: {
-        TaskListCommand: {
+        ListTaskCommand: {
+            NoTasks: "There are no tasks to list."
+        },
+        ListHistoryCommand: {
             NoTasks: "There are no tasks to list."
         }
     }
