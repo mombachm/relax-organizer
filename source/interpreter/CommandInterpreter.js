@@ -27,6 +27,10 @@ var CommandIntepreter = /** @class */ (function () {
                 return Command_1.CommandType.ListTasks;
             case Constants_1.default.Commands.ListHistory:
                 return Command_1.CommandType.ListHistory;
+            case Constants_1.default.Commands.DeleteEvents:
+                return Command_1.CommandType.DeleteEvents;
+            case Constants_1.default.Commands.DeleteTasks:
+                return Command_1.CommandType.DeleteTasks;
             default:
                 throw new ErrorMessage_1.default(MessageConstants_1.default.Error.Interpreter.InvalidCommand);
         }

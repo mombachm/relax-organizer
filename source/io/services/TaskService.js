@@ -45,6 +45,7 @@ var TaskService = /** @class */ (function (_super) {
             if (!task) {
                 throw new ErrorMessage_1.default(MessageConstants_1.default.LogItemService.Error.InvalidIds);
             }
+            tasks.push(task);
         });
         return tasks;
     };

@@ -45,6 +45,7 @@ export class TaskService extends LogItemService implements TaskService {
       if(!task) {
         throw new ErrorMessage(Message.LogItemService.Error.InvalidIds);
       }
+      tasks.push(task);
     });
     return tasks;
   }

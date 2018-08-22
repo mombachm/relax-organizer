@@ -5,6 +5,7 @@ var TodoCommand_1 = require("./TodoCommand");
 var HistoryCommand_1 = require("./HistoryCommand");
 var ListTasksCommand_1 = require("./ListTasksCommand");
 var ListHistoryCommand_1 = require("./ListHistoryCommand");
+var DeleteTaskCommand_1 = require("./DeleteTaskCommand");
 var CommandBuilder = /** @class */ (function () {
     function CommandBuilder() {
     }
@@ -25,6 +26,8 @@ var CommandBuilder = /** @class */ (function () {
                 return new ListTasksCommand_1.ListTasksCommand(this.commandArguments);
             case Command_1.CommandType.ListHistory:
                 return new ListHistoryCommand_1.ListHistoryCommand(this.commandArguments);
+            case Command_1.CommandType.DeleteTasks:
+                return new DeleteTaskCommand_1.DeleteTaskCommand(this.commandArguments);
             default:
                 return null;
         }

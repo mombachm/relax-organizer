@@ -31,6 +31,10 @@ export default class CommandIntepreter {
         return CommandType.ListTasks;
       case Constants.Commands.ListHistory:
         return CommandType.ListHistory;
+      case Constants.Commands.DeleteEvents:
+        return CommandType.DeleteEvents;
+      case Constants.Commands.DeleteTasks:
+        return CommandType.DeleteTasks;
       default:
         throw new ErrorMessage(Message.Error.Interpreter.InvalidCommand);
     }

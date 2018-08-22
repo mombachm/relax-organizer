@@ -11,7 +11,9 @@ var Constants = {
         History: "h",
         ToDo: "td",
         ListTasks: "lt",
-        ListHistory: "lh"
+        ListHistory: "lh",
+        DeleteEvents: "de",
+        DeleteTasks: "dt"
     }
 };
 exports.default = Constants;

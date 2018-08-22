@@ -3,6 +3,7 @@ import { TodoCommand } from "./TodoCommand";
 import { HistoryCommand } from "./HistoryCommand";
 import { ListTasksCommand } from "./ListTasksCommand";
 import { ListHistoryCommand } from "./ListHistoryCommand";
+import { DeleteTaskCommand } from "./DeleteTaskCommand";
 
 export class CommandBuilder {
   private commandType: CommandType;
@@ -31,6 +32,8 @@ export class CommandBuilder {
         return new ListTasksCommand(this.commandArguments);
       case CommandType.ListHistory:
         return new ListHistoryCommand(this.commandArguments);
+      case CommandType.DeleteTasks:
+        return new DeleteTaskCommand(this.commandArguments);
       default:
         return null;
     }

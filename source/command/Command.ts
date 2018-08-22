@@ -7,7 +7,9 @@ export enum CommandType {
   ToDo,
   History,
   ListTasks,
-  ListHistory
+  ListHistory,
+  DeleteEvents,
+  DeleteTasks
 }
 
 export abstract class AbstractCommand implements Command {
