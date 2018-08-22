@@ -21,7 +21,6 @@ var TodoCommand = /** @class */ (function (_super) {
         return _this;
     }
     TodoCommand.prototype.execute = function () {
-        console.log("ToDo Command.");
         if (!this.hasArguments()) {
             return;
         }

@@ -26,6 +26,18 @@ var Message = {
         ListHistoryCommand: {
             NoEvents: "There are no events to list."
         }
+    },
+    Commands: {
+        DeleteTaskCommand: {
+            Error: {
+                InvalidIds: "Invalid id(s) informed."
+            }
+        }
+    },
+    LogItemService: {
+        Error: {
+            InvalidIds: "Invalid id(s) to retrive task(s)."
+        }
     }
 };
 exports.default = Message;

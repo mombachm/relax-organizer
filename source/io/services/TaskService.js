@@ -37,6 +37,17 @@ var TaskService = /** @class */ (function (_super) {
         var targetTask = tasks.find(function (task) { return task.getId() === id; });
         return targetTask;
     };
+    TaskService.prototype.getTasksFromIds = function (ids) {
+        var _this = this;
+        var tasks = [];
+        ids.forEach(function (id) {
+            var task = _this.getTaskById(id);
+            if (!task) {
+                throw new ErrorMessage_1.default(MessageConstants_1.default.LogItemService.Error.InvalidIds);
+            }
+        });
+        return tasks;
+    };
     TaskService.prototype.updateTask = function (id, task) {
         var targetTask = this.getTaskById(id);
         if (targetTask) {
@@ -51,6 +62,13 @@ var TaskService = /** @class */ (function (_super) {
         if (targetTask) {
             this.deleteLogItem(targetTask);
         }
+    };
+    TaskService.prototype.deleteTasks = function (ids) {
+        var _this = this;
+        var tasks = this.getTasksFromIds(ids);
+        tasks.forEach(function (task) {
+            _this.deleteLogItem(task);
+        });
     };
     return TaskService;
 }(LogItemService_1.LogItemService));

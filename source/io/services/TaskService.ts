@@ -10,7 +10,9 @@ export interface TaskService {
   createTask(task: Task): void;
   updateTask(id: number, task: Task): void;
   deleteTask(id: number): void;
+  deleteTasks(ids: number[]): void;
   getTaskById(id: number): Task | undefined;
+  getTasksFromIds(taskIds: number[]): Task[];
 }
 
 export class TaskService extends LogItemService implements TaskService {
@@ -36,6 +38,17 @@ export class TaskService extends LogItemService implements TaskService {
     return targetTask;
   }
 
+  public getTasksFromIds(ids: number[]): Task[] {
+    const tasks: Task[] = [];
+    ids.forEach(id => {
+      const task = this.getTaskById(id);
+      if(!task) {
+        throw new ErrorMessage(Message.LogItemService.Error.InvalidIds);
+      }
+    });
+    return tasks;
+  }
+
   public updateTask(id: number, task: Task) {
     const targetTask = this.getTaskById(id);
     if (targetTask) {
@@ -53,4 +66,10 @@ export class TaskService extends LogItemService implements TaskService {
     }
   }
 
+  public deleteTasks(ids: number[]) {
+    const tasks: Task[] = this.getTasksFromIds(ids);
+    tasks.forEach(task => {
+      this.deleteLogItem(task);
+    });
+  }
 }

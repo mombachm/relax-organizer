@@ -11,7 +11,6 @@ export class TodoCommand extends AbstractCommand {
   }
 
   public execute(): void {
-    console.log("ToDo Command.");
     if(!this.hasArguments()) {
       return;
     }
