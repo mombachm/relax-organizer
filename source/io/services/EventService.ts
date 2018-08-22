@@ -48,9 +48,7 @@ export class EventService extends LogItemService implements EventService {
   public deleteEvent(id: number) {
     const targetEvent = this.getEventById(id);
     if (targetEvent) {
-      targetEvent.setDeleted(true);
+      this.deleteLogItem(targetEvent);
     }
-    const model = MainDAO.getModel();
-    MainDAO.saveModel(model);
   }
 }

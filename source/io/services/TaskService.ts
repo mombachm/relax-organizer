@@ -49,10 +49,8 @@ export class TaskService extends LogItemService implements TaskService {
   public deleteTask(id: number) {
     const targetTask = this.getTaskById(id);
     if (targetTask) {
-      targetTask.setDeleted(true);
+      this.deleteLogItem(targetTask);
     }
-    const model = MainDAO.getModel();
-    MainDAO.saveModel(model);
   }
 
 }

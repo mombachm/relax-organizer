@@ -49,10 +49,8 @@ var TaskService = /** @class */ (function (_super) {
     TaskService.prototype.deleteTask = function (id) {
         var targetTask = this.getTaskById(id);
         if (targetTask) {
-            targetTask.setDeleted(true);
+            this.deleteLogItem(targetTask);
         }
-        var model = MainDAO_1.MainDAO.getModel();
-        MainDAO_1.MainDAO.saveModel(model);
     };
     return TaskService;
 }(LogItemService_1.LogItemService));

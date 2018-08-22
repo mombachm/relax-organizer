@@ -49,10 +49,8 @@ var EventService = /** @class */ (function (_super) {
     EventService.prototype.deleteEvent = function (id) {
         var targetEvent = this.getEventById(id);
         if (targetEvent) {
-            targetEvent.setDeleted(true);
+            this.deleteLogItem(targetEvent);
         }
-        var model = MainDAO_1.MainDAO.getModel();
-        MainDAO_1.MainDAO.saveModel(model);
     };
     return EventService;
 }(LogItemService_1.LogItemService));
