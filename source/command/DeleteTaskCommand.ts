@@ -16,19 +16,19 @@ export class DeleteTaskCommand extends AbstractCommand {
     if(!this.hasArguments()) {
       return;
     }
-    const taskIds: number[] = this.getIdsFromArguments();
-    this.taskService.deleteTasks(taskIds);
+    const tasksIds: number[] = this.getIdsFromArguments();
+    this.taskService.deleteTasks(tasksIds);
   }
 
   private getIdsFromArguments(): number[] {
-    const taskIds: number[] = [];
+    const tasksIds: number[] = [];
     try {
       this.arguments.forEach(taskId => {
-        taskIds.push(Number(taskId));
+        tasksIds.push(Number(taskId));
       });
     } catch (e) {
       throw new ErrorMessage(Message.Commands.DeleteLogItemCommand.Error.InvalidIds);
     }
-    return taskIds;
+    return tasksIds;
   }
 }

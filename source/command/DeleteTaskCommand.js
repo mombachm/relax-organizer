@@ -25,20 +25,20 @@ var DeleteTaskCommand = /** @class */ (function (_super) {
         if (!this.hasArguments()) {
             return;
         }
-        var taskIds = this.getIdsFromArguments();
-        this.taskService.deleteTasks(taskIds);
+        var tasksIds = this.getIdsFromArguments();
+        this.taskService.deleteTasks(tasksIds);
     };
     DeleteTaskCommand.prototype.getIdsFromArguments = function () {
-        var taskIds = [];
+        var tasksIds = [];
         try {
             this.arguments.forEach(function (taskId) {
-                taskIds.push(Number(taskId));
+                tasksIds.push(Number(taskId));
             });
         }
         catch (e) {
             throw new ErrorMessage_1.default(MessageConstants_1.default.Commands.DeleteLogItemCommand.Error.InvalidIds);
         }
-        return taskIds;
+        return tasksIds;
     };
     return DeleteTaskCommand;
 }(Command_1.AbstractCommand));

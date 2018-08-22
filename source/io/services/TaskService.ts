@@ -12,7 +12,7 @@ export interface TaskService {
   deleteTask(id: number): void;
   deleteTasks(ids: number[]): void;
   getTaskById(id: number): Task | undefined;
-  getTasksFromIds(taskIds: number[]): Task[];
+  getTasksFromIds(tasksIds: number[]): Task[];
 }
 
 export class TaskService extends LogItemService implements TaskService {
