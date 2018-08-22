@@ -11,36 +11,36 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Command_1 = require("./Command");
-var TaskService_1 = require("../io/services/TaskService");
 var ErrorMessage_1 = require("../utils/messages/ErrorMessage");
 var MessageConstants_1 = require("../utils/messages/MessageConstants");
-var DeleteTaskCommand = /** @class */ (function (_super) {
-    __extends(DeleteTaskCommand, _super);
-    function DeleteTaskCommand(commandArguments) {
+var EventService_1 = require("../io/services/EventService");
+var DeleteEventCommand = /** @class */ (function (_super) {
+    __extends(DeleteEventCommand, _super);
+    function DeleteEventCommand(commandArguments) {
         var _this = _super.call(this, commandArguments) || this;
-        _this.taskService = new TaskService_1.TaskService();
+        _this.eventService = new EventService_1.EventService();
         return _this;
     }
-    DeleteTaskCommand.prototype.execute = function () {
+    DeleteEventCommand.prototype.execute = function () {
         if (!this.hasArguments()) {
             return;
         }
-        var taskIds = this.getIdsFromArguments();
-        this.taskService.deleteTasks(taskIds);
+        var eventsIds = this.getIdsFromArguments();
+        this.eventService.deleteEvents(eventsIds);
     };
-    DeleteTaskCommand.prototype.getIdsFromArguments = function () {
-        var taskIds = [];
+    DeleteEventCommand.prototype.getIdsFromArguments = function () {
+        var eventsIds = [];
         try {
-            this.arguments.forEach(function (taskId) {
-                taskIds.push(Number(taskId));
+            this.arguments.forEach(function (eventId) {
+                eventsIds.push(Number(eventId));
             });
         }
         catch (e) {
             throw new ErrorMessage_1.default(MessageConstants_1.default.Commands.DeleteLogItemCommand.Error.InvalidIds);
         }
-        return taskIds;
+        return eventsIds;
     };
-    return DeleteTaskCommand;
+    return DeleteEventCommand;
 }(Command_1.AbstractCommand));
-exports.DeleteTaskCommand = DeleteTaskCommand;
-//# sourceMappingURL=DeleteTaskCommand.js.map
+exports.DeleteEventCommand = DeleteEventCommand;
+//# sourceMappingURL=DeleteEventCommand.js.map

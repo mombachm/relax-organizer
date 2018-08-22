@@ -23,6 +23,10 @@ export abstract class AbstractCommand implements Command {
     this.arguments = commandArguments;
   }
 
+  protected hasArguments(): boolean {
+    return Boolean(this.arguments.length)
+  }
+
   public execute(): void {
     console.log("Default command.");
   }

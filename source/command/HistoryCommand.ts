@@ -18,10 +18,6 @@ export class HistoryCommand extends AbstractCommand {
     this.saveEvents(events);
   }
 
-  private hasArguments(): boolean {
-    return Boolean(this.arguments.length)
-  }
-
   private createEventsForArguments(): Event[] {
     const events: Event[] = [];
     this.arguments.forEach(eventDescription => {

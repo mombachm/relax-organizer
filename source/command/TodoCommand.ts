@@ -18,10 +18,6 @@ export class TodoCommand extends AbstractCommand {
     this.saveTasks(tasks);
   }
 
-  private hasArguments(): boolean {
-    return Boolean(this.arguments.length)
-  }
-
   private createTasksForArguments(): Task[] {
     const tasks: Task[] = [];
     this.arguments.forEach(taskDescription => {

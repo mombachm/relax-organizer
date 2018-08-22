@@ -1,34 +1,34 @@
 import { AbstractCommand } from "./Command";
-import { Task } from "../logitem/todo/Task";
-import { TaskService } from "../io/services/TaskService";
+import { Event } from "../logitem/history/Event";
 import ErrorMessage from "../utils/messages/ErrorMessage";
 import Message from "../utils/messages/MessageConstants";
+import { EventService } from "../io/services/EventService";
 
-export class DeleteTaskCommand extends AbstractCommand {
-  private taskService: TaskService;
+export class DeleteEventCommand extends AbstractCommand {
+  private eventService: EventService;
 
   constructor(commandArguments: string[]) {
     super(commandArguments);
-    this.taskService = new TaskService();
+    this.eventService = new EventService();
   }
 
   public execute(): void {
     if(!this.hasArguments()) {
       return;
     }
-    const taskIds: number[] = this.getIdsFromArguments();
-    this.taskService.deleteTasks(taskIds);
+    const eventsIds: number[] = this.getIdsFromArguments();
+    this.eventService.deleteEvents(eventsIds);
   }
 
   private getIdsFromArguments(): number[] {
-    const taskIds: number[] = [];
+    const eventsIds: number[] = [];
     try {
-      this.arguments.forEach(taskId => {
-        taskIds.push(Number(taskId));
+      this.arguments.forEach(eventId => {
+        eventsIds.push(Number(eventId));
       });
     } catch (e) {
       throw new ErrorMessage(Message.Commands.DeleteLogItemCommand.Error.InvalidIds);
     }
-    return taskIds;
+    return eventsIds;
   }
 }

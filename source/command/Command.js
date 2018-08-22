@@ -16,6 +16,9 @@ var AbstractCommand = /** @class */ (function () {
     AbstractCommand.prototype.setArguments = function (commandArguments) {
         this.arguments = commandArguments;
     };
+    AbstractCommand.prototype.hasArguments = function () {
+        return Boolean(this.arguments.length);
+    };
     AbstractCommand.prototype.execute = function () {
         console.log("Default command.");
     };

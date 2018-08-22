@@ -27,9 +27,6 @@ var TodoCommand = /** @class */ (function (_super) {
         var tasks = this.createTasksForArguments();
         this.saveTasks(tasks);
     };
-    TodoCommand.prototype.hasArguments = function () {
-        return Boolean(this.arguments.length);
-    };
     TodoCommand.prototype.createTasksForArguments = function () {
         var tasks = [];
         this.arguments.forEach(function (taskDescription) {

@@ -27,9 +27,6 @@ var HistoryCommand = /** @class */ (function (_super) {
         var events = this.createEventsForArguments();
         this.saveEvents(events);
     };
-    HistoryCommand.prototype.hasArguments = function () {
-        return Boolean(this.arguments.length);
-    };
     HistoryCommand.prototype.createEventsForArguments = function () {
         var events = [];
         this.arguments.forEach(function (eventDescription) {

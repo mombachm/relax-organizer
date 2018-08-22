@@ -4,6 +4,7 @@ import { HistoryCommand } from "./HistoryCommand";
 import { ListTasksCommand } from "./ListTasksCommand";
 import { ListHistoryCommand } from "./ListHistoryCommand";
 import { DeleteTaskCommand } from "./DeleteTaskCommand";
+import { DeleteEventCommand } from "./DeleteEventCommand";
 
 export class CommandBuilder {
   private commandType: CommandType;
@@ -34,6 +35,8 @@ export class CommandBuilder {
         return new ListHistoryCommand(this.commandArguments);
       case CommandType.DeleteTasks:
         return new DeleteTaskCommand(this.commandArguments);
+      case CommandType.DeleteEvents:
+        return new DeleteEventCommand(this.commandArguments);
       default:
         return null;
     }

@@ -28,7 +28,7 @@ var Message = {
         }
     },
     Commands: {
-        DeleteTaskCommand: {
+        DeleteLogItemCommand: {
             Error: {
                 InvalidIds: "Invalid id(s) informed."
             }
