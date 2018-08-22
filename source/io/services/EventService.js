@@ -37,6 +37,18 @@ var EventService = /** @class */ (function (_super) {
         var targetEvent = events.find(function (event) { return event.getId() === id; });
         return targetEvent;
     };
+    EventService.prototype.getEventsFromIds = function (ids) {
+        var _this = this;
+        var events = [];
+        ids.forEach(function (id) {
+            var event = _this.getEventById(id);
+            if (!event) {
+                throw new ErrorMessage_1.default(MessageConstants_1.default.LogItemService.Error.InvalidIds);
+            }
+            events.push(event);
+        });
+        return events;
+    };
     EventService.prototype.updateEvent = function (id, event) {
         var targetEvent = this.getEventById(id);
         if (targetEvent) {
@@ -51,6 +63,13 @@ var EventService = /** @class */ (function (_super) {
         if (targetEvent) {
             this.deleteLogItem(targetEvent);
         }
+    };
+    EventService.prototype.deleteEvents = function (ids) {
+        var _this = this;
+        var events = this.getEventsFromIds(ids);
+        events.forEach(function (task) {
+            _this.deleteLogItem(task);
+        });
     };
     return EventService;
 }(LogItemService_1.LogItemService));

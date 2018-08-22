@@ -9,7 +9,9 @@ export interface EventService {
   createEvent(event: Event): void;
   updateEvent(id: number, event: Event): void;
   deleteEvent(id: number): void;
+  deleteEvents(id: number[]): void;
   getEventById(id: number): void;
+  getEventsById(ids: number[]): Event[];
 }
 
 export class EventService extends LogItemService implements EventService {
@@ -35,6 +37,18 @@ export class EventService extends LogItemService implements EventService {
     return targetEvent;
   }
 
+  public getEventsFromIds(ids: number[]): Event[] {
+    const events: Event[] = [];
+    ids.forEach(id => {
+      const event = this.getEventById(id);
+      if(!event) {
+        throw new ErrorMessage(Message.LogItemService.Error.InvalidIds);
+      }
+      events.push(event);
+    });
+    return events;
+  }
+
   public updateEvent(id: number, event: Event) {
     const targetEvent = this.getEventById(id);
     if (targetEvent) {
@@ -50,5 +64,12 @@ export class EventService extends LogItemService implements EventService {
     if (targetEvent) {
       this.deleteLogItem(targetEvent);
     }
+  }
+
+  public deleteEvents(ids: number[]) {
+    const events: Event[] = this.getEventsFromIds(ids);
+    events.forEach(task => {
+      this.deleteLogItem(task);
+    });
   }
 }
