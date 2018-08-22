@@ -2,6 +2,7 @@ import ErrorMessage from "../../utils/messages/ErrorMessage";
 import Message from "../../utils/messages/MessageConstants";
 import { MainDAO } from "../MainDAO";
 import { Event } from "../../logitem/history/Event";
+import { LogItemService } from "./LogItemService";
 
 export interface EventService {
   listEvents(): Event[];
@@ -11,7 +12,7 @@ export interface EventService {
   getEventById(id: number): void;
 }
 
-export class EventService implements EventService {
+export class EventService extends LogItemService implements EventService {
 
   public createEvent(event: Event) {
     if(!event) {
@@ -24,7 +25,8 @@ export class EventService implements EventService {
 
   public listEvents(): Event[] {
     const model = MainDAO.getModel();
-    return model.history;
+    const history = this.filterDeletedLogItems(model.history);
+    return history as Event[];
   }
 
   public getEventById(id: number): Event | undefined {
@@ -43,4 +45,12 @@ export class EventService implements EventService {
     MainDAO.saveModel(model);
   }
 
+  public deleteEvent(id: number) {
+    const targetEvent = this.getEventById(id);
+    if (targetEvent) {
+      targetEvent.setDeleted(true);
+    }
+    const model = MainDAO.getModel();
+    MainDAO.saveModel(model);
+  }
 }

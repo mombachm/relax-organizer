@@ -1,10 +1,23 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 var ErrorMessage_1 = require("../../utils/messages/ErrorMessage");
 var MessageConstants_1 = require("../../utils/messages/MessageConstants");
 var MainDAO_1 = require("../MainDAO");
-var EventService = /** @class */ (function () {
+var LogItemService_1 = require("./LogItemService");
+var EventService = /** @class */ (function (_super) {
+    __extends(EventService, _super);
     function EventService() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     EventService.prototype.createEvent = function (event) {
         if (!event) {
@@ -16,7 +29,8 @@ var EventService = /** @class */ (function () {
     };
     EventService.prototype.listEvents = function () {
         var model = MainDAO_1.MainDAO.getModel();
-        return model.history;
+        var history = this.filterDeletedLogItems(model.history);
+        return history;
     };
     EventService.prototype.getEventById = function (id) {
         var events = this.listEvents();
@@ -32,7 +46,15 @@ var EventService = /** @class */ (function () {
         var model = MainDAO_1.MainDAO.getModel();
         MainDAO_1.MainDAO.saveModel(model);
     };
+    EventService.prototype.deleteEvent = function (id) {
+        var targetEvent = this.getEventById(id);
+        if (targetEvent) {
+            targetEvent.setDeleted(true);
+        }
+        var model = MainDAO_1.MainDAO.getModel();
+        MainDAO_1.MainDAO.saveModel(model);
+    };
     return EventService;
-}());
+}(LogItemService_1.LogItemService));
 exports.EventService = EventService;
 //# sourceMappingURL=EventService.js.map
