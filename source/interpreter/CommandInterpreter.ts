@@ -1,4 +1,4 @@
-import { CommandType } from "../command/Command";
+import { CommandType, CommandCode } from "../command/Command";
 import ErrorMessage from "../utils/messages/ErrorMessage";
 import Message from "../utils/messages/MessageConstants";
 import Constants from "../utils/Constants";
@@ -22,22 +22,11 @@ export default class CommandIntepreter {
       throw new ErrorMessage(Message.Error.Interpreter.InvalidCommand);
     }
     const command = processArguments[0];
-    switch(command) {
-      case Constants.Commands.ToDo:
-        return CommandType.ToDo;
-      case Constants.Commands.History:
-        return CommandType.History;
-      case Constants.Commands.ListTasks:
-        return CommandType.ListTasks;
-      case Constants.Commands.ListHistory:
-        return CommandType.ListHistory;
-      case Constants.Commands.DeleteEvents:
-        return CommandType.DeleteEvents;
-      case Constants.Commands.DeleteTasks:
-        return CommandType.DeleteTasks;
-      default:
-        throw new ErrorMessage(Message.Error.Interpreter.InvalidCommand);
+    const commandType = CommandCode[command];
+    if(commandType) {
+      return commandType;
     }
+    throw new ErrorMessage(Message.Error.Interpreter.InvalidCommand);
   }
 
   private hasNoArguments(processArguments: string[]): boolean {

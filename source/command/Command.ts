@@ -1,8 +1,3 @@
-export interface Command {
-  execute(): void;
-  setArguments(commandArguments: string[]): void;
-}
-
 export enum CommandType {
   ToDo,
   History,
@@ -10,6 +5,22 @@ export enum CommandType {
   ListHistory,
   DeleteEvents,
   DeleteTasks
+}
+
+export type CommandMap = {[key in string]: CommandType}
+
+export const CommandCode: CommandMap = {
+  ["td"]: CommandType.ToDo,
+  ["h"]:  CommandType.History,
+  ["lt"]: CommandType.ListTasks,
+  ["lh"]: CommandType.ListHistory,
+  ["de"]: CommandType.DeleteEvents,
+  ["dt"]: CommandType.DeleteTasks
+}
+
+export interface Command {
+  execute(): void;
+  setArguments(commandArguments: string[]): void;
 }
 
 export abstract class AbstractCommand implements Command {

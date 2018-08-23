@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var _a;
 var CommandType;
 (function (CommandType) {
     CommandType[CommandType["ToDo"] = 0] = "ToDo";
@@ -9,6 +10,14 @@ var CommandType;
     CommandType[CommandType["DeleteEvents"] = 4] = "DeleteEvents";
     CommandType[CommandType["DeleteTasks"] = 5] = "DeleteTasks";
 })(CommandType = exports.CommandType || (exports.CommandType = {}));
+exports.CommandCode = (_a = {},
+    _a["td"] = CommandType.ToDo,
+    _a["h"] = CommandType.History,
+    _a["lt"] = CommandType.ListTasks,
+    _a["lh"] = CommandType.ListHistory,
+    _a["de"] = CommandType.DeleteEvents,
+    _a["dt"] = CommandType.DeleteTasks,
+    _a);
 var AbstractCommand = /** @class */ (function () {
     function AbstractCommand(commandArguments) {
         this.arguments = commandArguments;
