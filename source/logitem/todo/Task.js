@@ -11,11 +11,17 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var LogItem_1 = require("../LogItem");
+var TaskStatus;
+(function (TaskStatus) {
+    TaskStatus[TaskStatus["Open"] = 0] = "Open";
+    TaskStatus[TaskStatus["Completed"] = 1] = "Completed";
+})(TaskStatus = exports.TaskStatus || (exports.TaskStatus = {}));
 var Task = /** @class */ (function (_super) {
     __extends(Task, _super);
     function Task(description) {
         var _this = _super.call(this) || this;
         _this.description = description || "";
+        _this.status = TaskStatus.Open;
         return _this;
     }
     Task.prototype.setDescription = function (description) {
@@ -23,6 +29,12 @@ var Task = /** @class */ (function (_super) {
     };
     Task.prototype.getDescription = function () {
         return this.description;
+    };
+    Task.prototype.setStatus = function (status) {
+        this.status = status;
+    };
+    Task.prototype.getStatus = function () {
+        return this.status;
     };
     Task.prototype.toString = function () {
         return this.formatTaskInfo();

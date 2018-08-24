@@ -1,5 +1,5 @@
 import { AbstractCommand } from "./Command";
-import { Task } from "../logitem/todo/Task";
+import { Task, TaskStatus } from "../logitem/todo/Task";
 import { TaskService } from "../io/services/TaskService";
 import InfoMessage from "../utils/messages/InfoMessage";
 import Message from "../utils/messages/MessageConstants";
@@ -39,8 +39,12 @@ export class ListTasksCommand extends AbstractCommand {
         console.log("\n" + MessageColor.FgGray + task.getCreationDate().toDateString());
       }
       console.log(MessageColor.FgGray + "------- Task: " + task.getId().toString() + " -------" + MessageColor.Reset);
-      console.log(MessageColor.FgCyan + "  " + task.toString() + MessageColor.Reset);
+      let taskColor = MessageColor.FgWhite;
+      if(task.getStatus() === TaskStatus.Completed) {
+        taskColor = MessageColor.FgGreen;
+      }
+      console.log(taskColor + "  " + task.toString() + MessageColor.Reset);
     });
-    console.log(MessageColor.FgBlue + "\n\n\n");
+    console.log("\n\n\n");
   }
 }

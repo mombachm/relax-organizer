@@ -11,6 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Command_1 = require("./Command");
+var Task_1 = require("../logitem/todo/Task");
 var TaskService_1 = require("../io/services/TaskService");
 var InfoMessage_1 = require("../utils/messages/InfoMessage");
 var MessageConstants_1 = require("../utils/messages/MessageConstants");
@@ -48,9 +49,13 @@ var ListTasksCommand = /** @class */ (function (_super) {
                 console.log("\n" + Message_1.MessageColor.FgGray + task.getCreationDate().toDateString());
             }
             console.log(Message_1.MessageColor.FgGray + "------- Task: " + task.getId().toString() + " -------" + Message_1.MessageColor.Reset);
-            console.log(Message_1.MessageColor.FgCyan + "  " + task.toString() + Message_1.MessageColor.Reset);
+            var taskColor = Message_1.MessageColor.FgWhite;
+            if (task.getStatus() === Task_1.TaskStatus.Completed) {
+                taskColor = Message_1.MessageColor.FgGreen;
+            }
+            console.log(taskColor + "  " + task.toString() + Message_1.MessageColor.Reset);
         });
-        console.log(Message_1.MessageColor.FgBlue + "\n\n\n");
+        console.log("\n\n\n");
     };
     return ListTasksCommand;
 }(Command_1.AbstractCommand));

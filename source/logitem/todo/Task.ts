@@ -1,11 +1,17 @@
 import { LogItem } from "../LogItem";
 
+export enum TaskStatus {
+  Open,
+  Completed
+}
 export class Task extends LogItem{
   private description: string;
+  private status: TaskStatus;
 
   constructor(description?: string) {
     super();
     this.description = description || "";
+    this.status = TaskStatus.Open;
   }
 
   public setDescription(description: string): void {
@@ -14,6 +20,14 @@ export class Task extends LogItem{
 
   public getDescription(): string {
     return this.description;
+  }
+
+  public setStatus(status: TaskStatus) {
+    this.status = status;
+  }
+
+  public getStatus(): TaskStatus {
+    return this.status;
   }
 
   public toString() {

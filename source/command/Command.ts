@@ -1,10 +1,14 @@
+import ErrorMessage from "../utils/messages/ErrorMessage";
+import Message from "../utils/messages/MessageConstants";
+
 export enum CommandType {
   ToDo,
   History,
   ListTasks,
   ListHistory,
   DeleteEvents,
-  DeleteTasks
+  DeleteTasks,
+  CompleteTask
 }
 
 export type CommandMap = {[key in string]: CommandType}
@@ -15,7 +19,8 @@ export const CommandCode: CommandMap = {
   ["lt"]: CommandType.ListTasks,
   ["lh"]: CommandType.ListHistory,
   ["de"]: CommandType.DeleteEvents,
-  ["dt"]: CommandType.DeleteTasks
+  ["dt"]: CommandType.DeleteTasks,
+  ["ct"]: CommandType.CompleteTask
 }
 
 export interface Command {
@@ -36,6 +41,18 @@ export abstract class AbstractCommand implements Command {
 
   protected hasArguments(): boolean {
     return Boolean(this.arguments.length)
+  }
+
+  protected getLogItemsIdsFromArguments(): number[] {
+    const logItemsIds: number[] = [];
+    try {
+      this.arguments.forEach(logItemId => {
+        logItemsIds.push(Number(logItemId));
+      });
+    } catch (e) {
+      throw new ErrorMessage(Message.Commands.DeleteLogItemCommand.Error.InvalidIds);
+    }
+    return logItemsIds;
   }
 
   public execute(): void {

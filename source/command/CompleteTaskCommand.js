@@ -11,22 +11,31 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Command_1 = require("./Command");
+var Task_1 = require("../logitem/todo/Task");
 var TaskService_1 = require("../io/services/TaskService");
-var DeleteTaskCommand = /** @class */ (function (_super) {
-    __extends(DeleteTaskCommand, _super);
-    function DeleteTaskCommand(commandArguments) {
+var CompleteTaskCommand = /** @class */ (function (_super) {
+    __extends(CompleteTaskCommand, _super);
+    function CompleteTaskCommand(commandArguments) {
         var _this = _super.call(this, commandArguments) || this;
         _this.taskService = new TaskService_1.TaskService();
         return _this;
     }
-    DeleteTaskCommand.prototype.execute = function () {
+    CompleteTaskCommand.prototype.execute = function () {
         if (!this.hasArguments()) {
             return;
         }
         var tasksIds = this.getLogItemsIdsFromArguments();
-        this.taskService.deleteTasks(tasksIds);
+        this.completeTasks(tasksIds);
     };
-    return DeleteTaskCommand;
+    CompleteTaskCommand.prototype.completeTasks = function (ids) {
+        var _this = this;
+        var tasks = this.taskService.getTasksFromIds(ids);
+        tasks.forEach(function (task) {
+            task.setStatus(Task_1.TaskStatus.Completed);
+            _this.taskService.updateTask(task.getId(), task);
+        });
+    };
+    return CompleteTaskCommand;
 }(Command_1.AbstractCommand));
-exports.DeleteTaskCommand = DeleteTaskCommand;
-//# sourceMappingURL=DeleteTaskCommand.js.map
+exports.CompleteTaskCommand = CompleteTaskCommand;
+//# sourceMappingURL=CompleteTaskCommand.js.map

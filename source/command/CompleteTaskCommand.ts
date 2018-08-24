@@ -1,10 +1,8 @@
 import { AbstractCommand } from "./Command";
-import { Task } from "../logitem/todo/Task";
+import { Task, TaskStatus } from "../logitem/todo/Task";
 import { TaskService } from "../io/services/TaskService";
-import ErrorMessage from "../utils/messages/ErrorMessage";
-import Message from "../utils/messages/MessageConstants";
 
-export class DeleteTaskCommand extends AbstractCommand {
+export class CompleteTaskCommand extends AbstractCommand {
   private taskService: TaskService;
 
   constructor(commandArguments: string[]) {
@@ -17,6 +15,14 @@ export class DeleteTaskCommand extends AbstractCommand {
       return;
     }
     const tasksIds: number[] = this.getLogItemsIdsFromArguments();
-    this.taskService.deleteTasks(tasksIds);
+    this.completeTasks(tasksIds);
+  }
+
+  public completeTasks(ids: number[]) {
+    const tasks: Task[] = this.taskService.getTasksFromIds(ids);
+    tasks.forEach(task => {
+      task.setStatus(TaskStatus.Completed);
+      this.taskService.updateTask(task.getId(), task);
+    });
   }
 }
