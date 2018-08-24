@@ -4,6 +4,7 @@ import Message from "../utils/messages/MessageConstants";
 
 export class JSONFileIOStream {
   private fs = require('fs');
+  private path = require('path');
 
   private static instance: JSONFileIOStream;
 
@@ -19,8 +20,8 @@ export class JSONFileIOStream {
     this.createDirIfNeeded(Constants.Data.Backup.Path);
     const JSONModel = JSON.stringify(model);
     try {
-      this.fs.writeFileSync(Constants.Data.Path + "/data.json", JSONModel);
-      this.fs.writeFileSync(Constants.Data.Backup.Path + "/data_" + new Date().toLocaleDateString().replace(/[/]/g,"_") + ".json", JSONModel);
+      this.fs.writeFileSync(Constants.Data.Path + Constants.Data.Filename, JSONModel);
+      this.fs.writeFileSync(this.getBackupFilename(), JSONModel);
     } catch(e) {
       throw new ErrorMessage(Message.Error.IOStream.WriteError);
     }
@@ -28,7 +29,7 @@ export class JSONFileIOStream {
 
   public readJSON(): any {
     try {
-      const data = this.fs.readFileSync(Constants.Data.Path + "/data.json");
+      const data = this.fs.readFileSync(Constants.Data.Path + Constants.Data.Filename);
       return JSON.parse(data);
     } catch(e) {
       throw new ErrorMessage(Message.Error.IOStream.ReadError);
@@ -39,5 +40,13 @@ export class JSONFileIOStream {
     if (!this.fs.existsSync(dirPath)){
         this.fs.mkdirSync(dirPath);
     }
+  }
+
+  private getBackupFilename(): string {
+    return Constants.Data.Backup.Path + "/" + this.path.parse(Constants.Data.Filename).name + "_" + this.getDateForFilename() + ".json";
+  }
+
+  private getDateForFilename(): string {
+    return new Date().toLocaleDateString().replace(/[/]/g,"_");
   }
 }

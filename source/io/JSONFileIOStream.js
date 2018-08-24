@@ -6,6 +6,7 @@ var MessageConstants_1 = require("../utils/messages/MessageConstants");
 var JSONFileIOStream = /** @class */ (function () {
     function JSONFileIOStream() {
         this.fs = require('fs');
+        this.path = require('path');
     }
     JSONFileIOStream.getInstance = function () {
         if (this.instance) {
@@ -18,8 +19,8 @@ var JSONFileIOStream = /** @class */ (function () {
         this.createDirIfNeeded(Constants_1.default.Data.Backup.Path);
         var JSONModel = JSON.stringify(model);
         try {
-            this.fs.writeFileSync(Constants_1.default.Data.Path + "/data.json", JSONModel);
-            this.fs.writeFileSync(Constants_1.default.Data.Backup.Path + "/data_" + new Date().toLocaleDateString().replace(/[/]/g, "_") + ".json", JSONModel);
+            this.fs.writeFileSync(Constants_1.default.Data.Path + Constants_1.default.Data.Filename, JSONModel);
+            this.fs.writeFileSync(this.getBackupFilename(), JSONModel);
         }
         catch (e) {
             throw new ErrorMessage_1.default(MessageConstants_1.default.Error.IOStream.WriteError);
@@ -27,7 +28,7 @@ var JSONFileIOStream = /** @class */ (function () {
     };
     JSONFileIOStream.prototype.readJSON = function () {
         try {
-            var data = this.fs.readFileSync(Constants_1.default.Data.Path + "/data.json");
+            var data = this.fs.readFileSync(Constants_1.default.Data.Path + Constants_1.default.Data.Filename);
             return JSON.parse(data);
         }
         catch (e) {
@@ -38,6 +39,12 @@ var JSONFileIOStream = /** @class */ (function () {
         if (!this.fs.existsSync(dirPath)) {
             this.fs.mkdirSync(dirPath);
         }
+    };
+    JSONFileIOStream.prototype.getBackupFilename = function () {
+        return Constants_1.default.Data.Backup.Path + "/" + this.path.parse(Constants_1.default.Data.Filename).name + "_" + this.getDateForFilename() + ".json";
+    };
+    JSONFileIOStream.prototype.getDateForFilename = function () {
+        return new Date().toLocaleDateString().replace(/[/]/g, "_");
     };
     return JSONFileIOStream;
 }());
