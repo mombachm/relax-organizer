@@ -1,11 +1,10 @@
 import Constants from "../utils/Constants";
 import ErrorMessage from "../utils/messages/ErrorMessage";
 import Message from "../utils/messages/MessageConstants";
-import { Task } from "../logitem/todo/Task";
-
 
 export class JSONFileIOStream {
   private fs = require('fs');
+
   private static instance: JSONFileIOStream;
 
   public static getInstance() {
@@ -37,7 +36,6 @@ export class JSONFileIOStream {
   }
 
   private createDirIfNeeded(dirPath: string) {
-    var dir = Constants.Data.Path;
     if (!this.fs.existsSync(dirPath)){
         this.fs.mkdirSync(dirPath);
     }

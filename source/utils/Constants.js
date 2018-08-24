@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var appRoot = require('app-root-path');
 var Constants = {
     Data: {
-        Path: "./data",
+        Path: appRoot.path + "/data",
         Backup: {
-            Path: "./data/backup"
+            Path: appRoot.path + "/data/backup"
         }
     },
     Commands: {

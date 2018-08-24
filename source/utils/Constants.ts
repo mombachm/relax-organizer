@@ -1,8 +1,11 @@
+
+var appRoot = require('app-root-path');
+
 const Constants = {
   Data: {
-    Path: "./data",
+    Path: appRoot.path + "/data",
     Backup: {
-      Path: "./data/backup"
+      Path: appRoot.path + "/data/backup"
     }
   },
   Commands: {

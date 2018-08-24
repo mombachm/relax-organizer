@@ -35,7 +35,6 @@ var JSONFileIOStream = /** @class */ (function () {
         }
     };
     JSONFileIOStream.prototype.createDirIfNeeded = function (dirPath) {
-        var dir = Constants_1.default.Data.Path;
         if (!this.fs.existsSync(dirPath)) {
             this.fs.mkdirSync(dirPath);
         }
