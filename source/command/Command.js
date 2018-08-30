@@ -32,6 +32,12 @@ var AbstractCommand = /** @class */ (function () {
     AbstractCommand.prototype.hasArguments = function () {
         return Boolean(this.arguments.length);
     };
+    AbstractCommand.prototype.setNextCommand = function (command) {
+        this.nextCommand = command;
+    };
+    AbstractCommand.prototype.hasNextCommand = function () {
+        return Boolean(this.nextCommand);
+    };
     AbstractCommand.prototype.getLogItemsIdsFromArguments = function () {
         var logItemsIds = [];
         try {
@@ -45,7 +51,9 @@ var AbstractCommand = /** @class */ (function () {
         return logItemsIds;
     };
     AbstractCommand.prototype.execute = function () {
-        console.log("Default command.");
+        if (this.hasNextCommand()) {
+            this.nextCommand.execute();
+        }
     };
     return AbstractCommand;
 }());

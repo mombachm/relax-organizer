@@ -1,6 +1,7 @@
 import { AbstractCommand } from "./Command";
 import { Task } from "../logitem/todo/Task";
 import { TaskService } from "../io/services/TaskService";
+import { ListTasksCommand } from "./ListTasksCommand";
 
 export class TodoCommand extends AbstractCommand {
   private taskService: TaskService;
@@ -8,6 +9,7 @@ export class TodoCommand extends AbstractCommand {
   constructor(commandArguments: string[]) {
     super(commandArguments);
     this.taskService = new TaskService();
+    this.setNextCommand(new ListTasksCommand(commandArguments));
   }
 
   public execute(): void {
@@ -16,6 +18,7 @@ export class TodoCommand extends AbstractCommand {
     }
     const tasks = this.createTasksForArguments();
     this.saveTasks(tasks);
+    super.execute();
   }
 
   private createTasksForArguments(): Task[] {

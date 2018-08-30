@@ -23,7 +23,7 @@ export default class CommandIntepreter {
     }
     const command = processArguments[0];
     const commandType = CommandCode[command];
-    if(commandType) {
+    if(commandType !== undefined) {
       return commandType;
     }
     throw new ErrorMessage(Message.Error.Interpreter.InvalidCommand);

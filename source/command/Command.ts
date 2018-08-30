@@ -30,6 +30,7 @@ export interface Command {
 
 export abstract class AbstractCommand implements Command {
   protected arguments: string[];
+  private nextCommand: AbstractCommand;
 
   constructor(commandArguments: string[]) {
     this.arguments = commandArguments;
@@ -41,6 +42,14 @@ export abstract class AbstractCommand implements Command {
 
   protected hasArguments(): boolean {
     return Boolean(this.arguments.length)
+  }
+
+  protected setNextCommand(command: AbstractCommand) {
+    this.nextCommand = command;
+  }
+
+  private hasNextCommand(): boolean {
+    return Boolean(this.nextCommand);
   }
 
   protected getLogItemsIdsFromArguments(): number[] {
@@ -56,6 +65,8 @@ export abstract class AbstractCommand implements Command {
   }
 
   public execute(): void {
-    console.log("Default command.");
+    if(this.hasNextCommand()) {
+      this.nextCommand.execute();
+    }
   }
 }

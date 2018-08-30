@@ -18,7 +18,7 @@ var CommandIntepreter = /** @class */ (function () {
         }
         var command = processArguments[0];
         var commandType = Command_1.CommandCode[command];
-        if (commandType) {
+        if (commandType !== undefined) {
             return commandType;
         }
         throw new ErrorMessage_1.default(MessageConstants_1.default.Error.Interpreter.InvalidCommand);

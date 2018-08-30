@@ -13,11 +13,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Command_1 = require("./Command");
 var Task_1 = require("../logitem/todo/Task");
 var TaskService_1 = require("../io/services/TaskService");
+var ListTasksCommand_1 = require("./ListTasksCommand");
 var TodoCommand = /** @class */ (function (_super) {
     __extends(TodoCommand, _super);
     function TodoCommand(commandArguments) {
         var _this = _super.call(this, commandArguments) || this;
         _this.taskService = new TaskService_1.TaskService();
+        _this.setNextCommand(new ListTasksCommand_1.ListTasksCommand(commandArguments));
         return _this;
     }
     TodoCommand.prototype.execute = function () {
@@ -26,6 +28,7 @@ var TodoCommand = /** @class */ (function (_super) {
         }
         var tasks = this.createTasksForArguments();
         this.saveTasks(tasks);
+        _super.prototype.execute.call(this);
     };
     TodoCommand.prototype.createTasksForArguments = function () {
         var tasks = [];

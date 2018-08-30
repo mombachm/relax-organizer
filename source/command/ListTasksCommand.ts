@@ -4,6 +4,7 @@ import { TaskService } from "../io/services/TaskService";
 import InfoMessage from "../utils/messages/InfoMessage";
 import Message from "../utils/messages/MessageConstants";
 import { MessageColor } from "../utils/messages/Message";
+import { ListHistoryCommand } from "./ListHistoryCommand";
 
 export class ListTasksCommand extends AbstractCommand {
   private taskService: TaskService;
@@ -20,6 +21,7 @@ export class ListTasksCommand extends AbstractCommand {
     } else {
       throw new InfoMessage(Message.Info.ListTaskCommand.NoTasks);
     }
+    super.execute();
   }
 
   private loadTasks(): Task[] {

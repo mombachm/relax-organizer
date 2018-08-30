@@ -31,6 +31,7 @@ var ListTasksCommand = /** @class */ (function (_super) {
         else {
             throw new InfoMessage_1.default(MessageConstants_1.default.Info.ListTaskCommand.NoTasks);
         }
+        _super.prototype.execute.call(this);
     };
     ListTasksCommand.prototype.loadTasks = function () {
         var tasks = this.taskService.listTasks();
