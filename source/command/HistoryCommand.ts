@@ -1,6 +1,7 @@
 import { AbstractCommand } from "./Command";
 import { EventService } from "../io/services/EventService";
 import { Event } from "../logitem/history/Event";
+import { ListHistoryCommand } from "./ListHistoryCommand";
 
 export class HistoryCommand extends AbstractCommand {
   private eventService: EventService;
@@ -8,6 +9,7 @@ export class HistoryCommand extends AbstractCommand {
   constructor(commandArguments: string[]) {
     super(commandArguments);
     this.eventService = new EventService();
+    this.setNextCommand(new ListHistoryCommand(commandArguments));
   }
 
   public execute(): void {
@@ -16,6 +18,7 @@ export class HistoryCommand extends AbstractCommand {
     }
     const events = this.createEventsForArguments();
     this.saveEvents(events);
+    super.execute();
   }
 
   private createEventsForArguments(): Event[] {

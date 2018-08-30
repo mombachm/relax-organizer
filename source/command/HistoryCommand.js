@@ -13,11 +13,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Command_1 = require("./Command");
 var EventService_1 = require("../io/services/EventService");
 var Event_1 = require("../logitem/history/Event");
+var ListHistoryCommand_1 = require("./ListHistoryCommand");
 var HistoryCommand = /** @class */ (function (_super) {
     __extends(HistoryCommand, _super);
     function HistoryCommand(commandArguments) {
         var _this = _super.call(this, commandArguments) || this;
         _this.eventService = new EventService_1.EventService();
+        _this.setNextCommand(new ListHistoryCommand_1.ListHistoryCommand(commandArguments));
         return _this;
     }
     HistoryCommand.prototype.execute = function () {
@@ -26,6 +28,7 @@ var HistoryCommand = /** @class */ (function (_super) {
         }
         var events = this.createEventsForArguments();
         this.saveEvents(events);
+        _super.prototype.execute.call(this);
     };
     HistoryCommand.prototype.createEventsForArguments = function () {
         var events = [];
